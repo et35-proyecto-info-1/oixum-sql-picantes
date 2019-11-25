@@ -1,22 +1,156 @@
-<h1>Oixum SQL</h1>
+<style>
 
-<form method="post" action="/">
-  <textarea name="query"  rows="4" cols="30">{{ text }}</textarea><br />
-  <input type="submit" />
+body{
+  background-color: blue;
+
+}
+
+.titulo{
+  background-color: yellow;
+font: oblique bold 120% cursive;
+}
+
+ form {
+
+ margin: auto;
+ background: yellow;
+ padding: 10px 20px;
+
+ margin-top: 20px;
+
+
+ }
+
+.head{
+  background-color: lavender;
+  padding: 20px
+
+}
+
+.body{
+
+  background-color: LavenderBlush;
+}
+
+textarea{
+  min-height: 100px;
+  max-height: 200px;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.msjError {
+  color: white;
+}
+.cajaError{
+  text-align: center;
+  margin: 5em;
+  background-color: rgb(255, 0, 129);
+  border-radius: 1em;
+  padding-bottom: 1em;
+}
+
+.cajaResultados{
+  text-align: center;
+  border-radius: 1em;
+  padding-bottom: 1em;
+}
+
+button{
+  border: none;
+  background: rgb(0,103,164);
+  height: 4em;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  font: oblique bold 120% cursive;
+}
+button:hover{
+  cursor: pointer;
+}
+ input,textarea {
+ width: 100%;
+ margin-bottom: 20px;
+ padding: 7px;
+ box-sizing: border-box;
+ font-size: 17px;
+ }
+ table {
+   margin-top: 4em;
+   font-size: 2em;
+   border-collapse: collapse;
+   border: 1px solid black;
+ }
+ tr, td, th {
+   border-spacing: 2em;
+   border-collapse: collapse;
+   text-align: center;
+   border: 1px solid black;
+ }
+
+.footer{
+  color: blue;
+  text-align: right;
+  text-align: ;
+  background: yellow;
+
+}
+
+
+</style>
+
+<label class="titulo">Escriba su consulta aqui</label>
+<form class="" action="/" method="post">
+<textarea name="query"  rows="10" cols="30">{{ text }}</textarea><br />
+<button type="submit" name="button" onclick=boton()>Consultar</button>
 </form>
 
-{{#if resultados}}
-<h3>Resultados</h3>
-<code>{{ resultados }}</code>
-{{/if}}
-
-
-{{#if columnas}}
-<h3>Columnas</h3>
-{{ columnas }}
-{{/if}}
 
 {{#if error}}
-<h3>Error</h3>
-{{ error }}
+<div class="cajaError">
+<h1 class="msjError">ERROR</h1>
+<code><h2>{{ error }}</h2></code>
+</div>
 {{/if}}
+
+{{#if resultados}}
+<div class="cajaResultados">
+
+<h2>Resultados</h2>
+<!--<code>{{ resultados }}</code>-->
+
+<table>
+  <thead class='head'>
+    {{#each columnas}}
+      {{#if this.name}}
+      <td>{{this.name}}</td>
+      {{/if}}
+    {{/each}}
+  </thead>
+  <tbody class='body'>
+    {{#each resultados}}
+    <tr>
+        {{#if this.id}}
+        <td>{{this.id}}</td>
+        {{/if}}
+        {{#if this.nombre}}
+        <td>{{this.nombre}}</td>
+        {{/if}}
+        {{#if this.comidaPreferida}}
+        <td>{{this.comidaPreferida}}</td>
+        {{/if}}
+        {{#if this.fechaNacimiento}}
+        <td>{{this.fechaNacimiento}}</td>
+        {{/if}}
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+
+</div>
+{{/if}}
+
+<footer class="footer"> <a href="https://github.com/et35-proyecto-info-1/oixum-sql-picantes"> Profesor Santigo Trini</a> </footer>
+<footer class="footer"> <a href="https://github.com/facundoabadi"> Facundo Abadi</a> </footer>
+<footer class="footer"> <a href="https://github.com/ramispano"> Ramiro Spano</a> </footer>
